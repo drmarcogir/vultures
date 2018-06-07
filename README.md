@@ -1,4 +1,4 @@
-# R code for analyses on the effects of land-use and vegetation greenness on vulture nestling body condition 
+# Effects of land-use and vegetation greenness on vulture nestling body condition 
 
 *Marco Girardello* (marco.girardello@gmail.com) 
 
