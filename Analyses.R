@@ -54,7 +54,6 @@ dat2 %>%
   mutate(value=scale(value))  %>%
   spread(variable,value) ->dat3
 
-
 # prepare wbv data
 subset(dat3,english=="White-backed vulture") ->wbv1
 coordinates(wbv1)<-~X+Y
