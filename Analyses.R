@@ -11,7 +11,7 @@ library(stringi);library(gtools)
 library(XLConnect);library(ncf)
 library(RColorBrewer)
 
-# source required functions and support file
+# source required functions and info for labeling graphs
 marcofunctions<-list.files("/mnt/data1tb/Dropbox/Andrea/ndvi/scripts/functions",full.names=TRUE)
 for (f in 1:length(marcofunctions)) {source(marcofunctions[f])}
 
