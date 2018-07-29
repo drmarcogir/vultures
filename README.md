@@ -19,25 +19,16 @@ library(XLConnect);library(ncf)
 library(RColorBrewer)
 
 # source required functions and info for labeling graphs
-marcofunctions<-list.files("/mnt/data1tb/Dropbox/Andrea/ndvi/scripts/functions",full.names=TRUE)
+marcofunctions<-c("fitaddmod.R","fitintmod.R","scattervalues.R","spautowrap.R")
 for (f in 1:length(marcofunctions)) {source(marcofunctions[f])}
 
-# read in files
-lfv <- read.table(file = "/mnt/data1tb/Dropbox/Andrea/ndvi/vulturemodels/LFVdata.txt", header = T, dec = ",")
-wbv<- read.table(file = "/mnt/data1tb/Dropbox/Andrea/ndvi/vulturemodels/WBVdata.txt", header = T, dec = ",")
-# insert names
-lfv$english<-"Lappet-faced vulture"
-wbv$english<-"White-backed vulture"
-
-# exclude outliers
-lfv<-subset(lfv,NDVI_1m < 0.27)
-wbv<-subset(wbv,NDVI_1m < 0.35)
+# load data file
+load("vulturedata.rda")
 
 # rescale body condition index
-bind_rows(lfv,wbv)    %>%
-  dplyr::select(-c(RingCode,Ring,Wing,Mass,Species))  %>%
-  group_by(english)  %>%
- mutate(ScaledMassIndex=scale(ScaledMassIndex)) -> dat1
+vulturedata  %>%
+  group_by(english) %>%
+ mutate(ScaledMassIndex=scale(ScaledMassIndex)) -> dat2
 
 # duplicated coordinates
 unique(dat1[,c("X","Y")]) %>%
